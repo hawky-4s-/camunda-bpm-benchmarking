@@ -1,0 +1,5 @@
+FROM camunda/camunda-bpm-platform:tomcat-7.4.0-SNAPSHOT
+
+COPY etc/ /camunda/
+
+EXPOSE 9090
