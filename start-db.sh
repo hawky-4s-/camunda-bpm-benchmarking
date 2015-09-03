@@ -12,8 +12,8 @@ sleep 5
 echo "\nStarting postgresql on $HOST:5432"
 
 docker run \
-    --cpuset-cpus="0" \
-    --cpu-quota 10000 \
+    --cpuset-cpus="0,2" \
+    --cpu-quota 50000 \
     -p 5432:5432 \
     -e POSTGRES_USER=camunda \
     -e POSTGRES_PASSWORD=camunda \
