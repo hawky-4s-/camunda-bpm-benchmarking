@@ -1,7 +1,7 @@
 #!/bin/bash
 VERSION=${1:-SNAPSHOT}
 HOST=${2:-ci4.camunda.loc}
-DB_HOST=${3:-192.168.178.106}
+DB_HOST=${3:-ci3.camunda.loc}
 export DOCKER_HOST=tcp://$HOST:2375
 unset DOCKER_TLS_VERIFY
 
