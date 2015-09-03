@@ -1,4 +1,6 @@
 #!/bin/bash
+# Usage: ./start-platform.sh SNAPSHOT 192.168.178.107 12345
+
 VERSION=${1:-SNAPSHOT}
 HOST=${2:-192.168.178.107} # ci4.camunda.loc
 JMX_PORT=${3:-9090}
