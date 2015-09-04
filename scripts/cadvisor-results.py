@@ -1,6 +1,6 @@
 import sys, http.client, json, csv, datetime
 
-if len(sys.argv) != 2:
+if len(sys.argv) != 3:
   print('Usage: python <script> <cAdvisorHost>:<port> <monitoredContainerId>')
   quit()
 
@@ -24,7 +24,8 @@ cadvisorHost = sys.argv[1]
 containerId = sys.argv[2]
 
 # TODO: read these optionally from command line
-outfile = 'out.csv'
+csvOutfile = 'out.csv'
+jsonOutfile = 'out.json'
 numCpus = 8
 
 params = json.dumps({'num_stats' : -1, 'num_samples' : 0})
@@ -36,9 +37,13 @@ response = connection.getresponse()
 if (response.status / 100) != 2:
   raise Exception('Request not successful; got status code ' + response.status)
 
-responsebody = json.loads(response.read().decode('utf-8'))
+responsebodyString = response.read().decode('utf-8')
+responsebody = json.loads(responsebodyString)
 
-with open(outfile, 'w') as csvfile:
+with open(jsonOutfile, 'w') as jsonfile:
+  jsonfile.write(responsebodyString)
+
+with open(csvOutfile, 'w') as csvfile:
   fieldnames = ['timestamp']
   for i in range(numCpus):
     fieldnames.append('cpu' + str(i))
